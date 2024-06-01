@@ -1,0 +1,16 @@
+# Node.js dependencies
+node_modules/
+
+# Test coverage reports (if generated)
+coverage/
+
+# Development artifacts
+*.log
+.env
+
+# Optional: Docker (choose one approach)
+Dockerfile  # OR create a separate .dockerignore file
+
+# IDE specific files
+.vscode/
+.idea/
