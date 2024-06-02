@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose the application port (if your app runs on a specific port, specify it here)
-# EXPOSE 3000
+ EXPOSE 3000
 
 # Command to run the application (replace with your start command)
-CMD ["npm", "src/index.js"]
+CMD ["npm", "start"]
