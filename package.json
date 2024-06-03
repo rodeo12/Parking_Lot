@@ -1,21 +1,18 @@
 {
   "name": "parking_lot",
   "version": "1.0.0",
-  "description": "Automated ticketing system for a multi-storey parking lot",
+  "description": "This project implements an automated ticketing system for a multi-storey parking lot using object-oriented programming principles in JavaScript.",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "start": "node src/index.js",
-    "start-file": "node src/index.js",
     "test": "jest"
   },
-  "dependencies": {
-    "jest": "^29.7.0"
-  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@types/jest": "^29.7.0",
-    "ts-jest": "^29.0.3"
-  },
-  "jest": {
-    "testEnvironment": "node"
+    "jest": "^29.7.0"
   }
 }

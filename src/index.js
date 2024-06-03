@@ -6,6 +6,7 @@ const ParkingLot = require('./ParkingLot');
 let parkingLot = null;
 
 function processCommand(command) {
+    console.log(command)
     const parts = command.trim().split(' ');
     const action = parts[0];
     
@@ -106,7 +107,7 @@ if (process.argv.length > 2) {
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
-        prompt: '> '
+        prompt: '$ '
     });
 
     rl.prompt();
