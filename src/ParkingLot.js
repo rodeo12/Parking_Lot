@@ -1,56 +1,66 @@
-// src/ParkingLot.js
-
-const Car = require('./Car');
 const ParkingSlot = require('./ParkingSlot');
 
 class ParkingLot {
-  constructor(totalSlots) {
-    this.totalSlots = totalSlots;
-    this.slots = Array.from({ length: totalSlots }, (_, i) => new ParkingSlot(i + 1));
-  }
-
-  findNearestAvailableSlot() {
-    return this.slots.find(slot => !slot.isOccupied);
-  }
-
-  parkCar(registrationNumber, color) {
-    const car = new Car(registrationNumber, color);
-    const slot = this.findNearestAvailableSlot();
-
-    if (slot) {
-      slot.park(car);
-      return slot.slotNumber;
-    } else {
-      return null;
+    constructor(size) {
+        this.size = size;
+        this.slots = [];
+        for (let i = 1; i <= size; i++) {
+            this.slots.push(new ParkingSlot(i));
+        }
     }
-  }
 
-  leaveSlot(slotNumber) {
-    const slot = this.slots[slotNumber - 1];
-    if (slot.isOccupied) {
-      slot.leave();
-      return true;
-    } else {
-      return false;
+    findNearestAvailableSlot() {
+        for (let slot of this.slots) {
+            if (!slot.isOccupied) {
+                return slot;
+            }
+        }
+        return null;
     }
-  }
 
-  findRegistrationNumbersByColor(color) {
-    return this.slots
-      .filter(slot => slot.isOccupied && slot.car.color === color)
-      .map(slot => slot.car.registrationNumber);
-  }
+    parkCar(car) {
+        const slot = this.findNearestAvailableSlot();
+        if (slot) {
+            slot.parkCar(car);
+            return slot.slotNumber;
+        } else {
+            return null;
+        }
+    }
 
-  findSlotByRegistrationNumber(registrationNumber) {
-    const slot = this.slots.find(slot => slot.isOccupied && slot.car.registrationNumber === registrationNumber);
-    return slot ? slot.slotNumber : null;
-  }
+    leaveSlot(slotNumber) {
+        const slot = this.slots[slotNumber - 1];
+        if (slot && slot.isOccupied) {
+            slot.leaveCar();
+            return true;
+        }
+        return false;
+    }
 
-  findSlotsByColor(color) {
-    return this.slots
-      .filter(slot => slot.isOccupied && slot.car.color === color)
-      .map(slot => slot.slotNumber);
-  }
+    getStatus() {
+        return this.slots.filter(slot => slot.isOccupied).map(slot => ({
+            slotNumber: slot.slotNumber,
+            registrationNumber: slot.car.registrationNumber,
+            color: slot.car.color
+        }));
+    }
+
+    findRegistrationNumbersByColor(color) {
+        return this.slots
+            .filter(slot => slot.isOccupied && slot.car.color === color)
+            .map(slot => slot.car.registrationNumber);
+    }
+
+    findSlotNumbersByColor(color) {
+        return this.slots
+            .filter(slot => slot.isOccupied && slot.car.color === color)
+            .map(slot => slot.slotNumber);
+    }
+
+    findSlotNumberByRegistrationNumber(registrationNumber) {
+        const slot = this.slots.find(slot => slot.isOccupied && slot.car.registrationNumber === registrationNumber);
+        return slot ? slot.slotNumber : null;
+    }
 }
 
 module.exports = ParkingLot;
