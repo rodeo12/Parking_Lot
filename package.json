@@ -1,19 +1,21 @@
 {
   "name": "parking_lot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Automated ticketing system for a multi-storey parking lot",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node src/index.js",
+    "start-file": "node src/index.js",
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "jest": "^29.7.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.7.0",
+    "ts-jest": "^29.0.3"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

@@ -1,5 +1,5 @@
-# Use the official Node.js image with the latest LTS version
-FROM node:lts
+# Use Node.js LTS version as the base image
+FROM node:14
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
@@ -7,14 +7,14 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install project dependencies
+# Install dependencies
 RUN npm install
 
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Expose the application port (if your app runs on a specific port, specify it here)
- EXPOSE 3000
+# Expose the port that the application listens on
+EXPOSE 3000
 
-# Command to run the application (replace with your start command)
-CMD ["npm", "start"]
+# Command to run the application
+CMD [ "node", "src/index.js" ]
